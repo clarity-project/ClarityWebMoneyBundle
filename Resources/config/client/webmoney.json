@@ -1,0 +1,119 @@
+{
+    "name": "WebMoney",
+    "baseUrl": "https://w3s.webmoney.ru/asp/",
+
+    "operations": {
+        "X2_transfer": {
+            "httpMethod": "POST",
+            "uri": "XMLTrans.asp",
+            "summary": "Tranfer money from self wmw - http://wiki.webmoney.ru/projects/webmoney/wiki/%D0%98%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81_X2",
+            "class": "Clarity\\WebMoneyBundle\\Client\\Command\\WebMoneyDeserializeCommand",
+            "responseClass": "Clarity\\WebMoneyBundle\\Model\\Response\\WebMoneyTransferResponse",
+            "parameters": {
+                "reqn": {
+                    "location": "xml",
+                    "type": "string",
+                    "required": true
+                },
+                "wmid": {
+                    "location": "xml",
+                    "type": "string",
+                    "required": true
+                },
+                "sign": {
+                    "location": "xml",
+                    "type": "string",
+                    "required": true
+                },
+                "trans": {
+                    "location": "xml",
+                    "type": "object",
+                    "required": true,
+                    "properties": {
+                        "tranid": {
+                            "location": "xml",
+                            "type": "string",
+                            "required": true
+                        },
+                        "pursesrc": {
+                            "location": "xml",
+                            "type": "string",
+                            "required": true
+                        },
+                        "pursedest": {
+                            "location": "xml",
+                            "type": "string",
+                            "required": true
+                        },
+                        "amount": {
+                            "location": "xml",
+                            "type": "numeric",
+                            "required": true
+                        },
+                        "period": {
+                            "location": "xml",
+                            "type": "string",
+                            "required": true
+                        },
+                        "pcode": {
+                            "location": "xml",
+                            "type": "string",
+                            "required": true
+                        },
+                        "desc": {
+                            "location": "xml",
+                            "type": "string",
+                            "required": true
+                        },
+                        "wminvid": {
+                            "location": "xml",
+                            "type": "string",
+                            "required": true
+                        },
+                        "onlyauth": {
+                            "location": "xml",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                }
+            }
+        },
+        "X6_current_ballance": {
+            "httpMethod": "POST",
+            "uri": "XMLPurses.asp",
+            "summary": "Get current ballance on purses - http://wiki.webmoney.ru/projects/webmoney/wiki/%D0%98%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81_X9",
+            "class": "Clarity\\WebMoneyBundle\\Client\\Command\\WebMoneyDeserializeCommand",
+            "responseClass": "Clarity\\WebMoneyBundle\\Model\\Response\\WebMoneyGetBallanceResponse",
+            "parameters": {
+                "reqn": {
+                    "location": "xml",
+                    "type": "string",
+                    "required": true
+                },
+                "wmid": {
+                    "location": "xml",
+                    "type": "string",
+                    "required": true
+                },
+                "sign": {
+                    "location": "xml",
+                    "type": "string",
+                    "required": true
+                },
+                "getpurses": {
+                    "location": "xml",
+                    "type": "object",
+                    "required": true,
+                    "properties": {
+                        "wmid": {
+                            "location": "xml",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

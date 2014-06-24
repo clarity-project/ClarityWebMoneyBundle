@@ -1,0 +1,42 @@
+parameters:
+    zw_api.webmoney.manager.class: Clarity\WebMoneyBundle\Manager\WebMoney
+    zw_api.webmoney.manager.wmid: 1085xxxxxxxx # to bundle config
+    zw_api.webmoney.manager.wmr: R2375xxxxxxxx # to bundle config
+    zw_api.webmoney.manager.signer_path: '%kernel.root_dir%/wmsigner/'
+    zw_api.webmoney.client.class: Clarity\WebMoneyBundle\Client\WebMoneyClient
+    zw_api.webmoney.client.url: https://w3s.webmoney.ru/asp/
+    zw_api.webmoney.client.config:
+        request.options:
+            verify: false
+            ssl_key: "%zw_api.webmoney.manager.signer_path%WebMoneyCA.pem.crt"
+    # Abstract
+    zw_api.abstract.manager.class: Clarity\WebMoneyBundle\Manager\AbstractManager
+
+
+services:
+## Managers configuration ##
+    zw_api.webmoney.manager:
+        class: "%zw_api.webmoney.manager.class%"
+        arguments:
+            - "@zw_api.webmoney.client"
+            - "%zw_api.webmoney.manager.wmid%"
+            - "%zw_api.webmoney.manager.wmr%"
+            - "%zw_api.webmoney.manager.signer_path%"
+        lazy: true
+        public: true
+
+## Clients configurations ##
+    zw_api.webmoney.client:
+        class: "%zw_api.webmoney.client.class%"
+        arguments: ["%zw_api.webmoney.client.url%", "%zw_api.webmoney.client.config%"]
+        calls:
+            - ["setDescription", ["@zw_api.webmoney.client.service_description"]]
+        tags:
+            - {name: guzzle.client}
+
+## Client description services ##
+    zw_api.webmoney.client.service_description:
+        class: "%guzzle.service_description.class%"
+        factory_class: "%guzzle.service_description.class%"
+        factory_method: factory
+        arguments: ["%zw_api.webmoney.client.service_description.file_path%"]
