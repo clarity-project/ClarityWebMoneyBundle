@@ -27,7 +27,7 @@ class ClarityWebMoneyExtension extends Extension
 
         // Prepare parameters for yandex money passport guzzle client
         $container->setParameter(
-            'zw_api.webmoney.client.service_description.file_path',
+            'clarity_wm.webmoney.client.service_description.file_path',
             __DIR__ . '/../Resources/config/client/webmoney.json'
         );
     }

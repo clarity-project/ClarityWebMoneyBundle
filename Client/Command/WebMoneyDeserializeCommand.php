@@ -1,6 +1,6 @@
 <?php
 
-namespace ZW\ApiBundle\Client\Command;
+namespace Clarity\WebMoneyBundle\Client\Command;
 
 /**
  * @author varloc2000 <varloc2000@gmail.com>

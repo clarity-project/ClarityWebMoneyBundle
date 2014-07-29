@@ -1,6 +1,6 @@
 <?php
 
-namespace ZW\ApiBundle\Client;
+namespace Clarity\WebMoneyBundle\Client;
 
 use Guzzle\Service\Client;
 

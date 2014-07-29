@@ -1,6 +1,6 @@
 <?php
 
-namespace ZW\ApiBundle\DependencyInjection;
+namespace Clarity\WebMoneyBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,11 +18,17 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('zw_api');
+        $rootNode = $treeBuilder->root('clarity_wm');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->scalarNode('wmid')
+                    ->isRequired(true)
+                ->end()
+                ->scalarNode('wmr')
+                    ->isRequired(true)
+                ->end()
+            ->end();
 
         return $treeBuilder;
     }

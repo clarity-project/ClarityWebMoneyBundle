@@ -1,42 +1,42 @@
 parameters:
-    zw_api.webmoney.manager.class: Clarity\WebMoneyBundle\Manager\WebMoney
-    zw_api.webmoney.manager.wmid: 1085xxxxxxxx # to bundle config
-    zw_api.webmoney.manager.wmr: R2375xxxxxxxx # to bundle config
-    zw_api.webmoney.manager.signer_path: '%kernel.root_dir%/wmsigner/'
-    zw_api.webmoney.client.class: Clarity\WebMoneyBundle\Client\WebMoneyClient
-    zw_api.webmoney.client.url: https://w3s.webmoney.ru/asp/
-    zw_api.webmoney.client.config:
+    clarity_wm.webmoney.manager.class: Clarity\WebMoneyBundle\Manager\WebMoney
+    clarity_wm.webmoney.manager.wmid: 1085xxxxxxxx # to bundle config
+    clarity_wm.webmoney.manager.wmr: R2375xxxxxxxx # to bundle config
+    clarity_wm.webmoney.manager.signer_path: '%kernel.root_dir%/wmsigner/'
+    clarity_wm.webmoney.client.class: Clarity\WebMoneyBundle\Client\WebMoneyClient
+    clarity_wm.webmoney.client.url: https://w3s.webmoney.ru/asp/
+    clarity_wm.webmoney.client.config:
         request.options:
             verify: false
-            ssl_key: "%zw_api.webmoney.manager.signer_path%WebMoneyCA.pem.crt"
+            ssl_key: "%clarity_wm.webmoney.manager.signer_path%WebMoneyCA.pem.crt"
     # Abstract
-    zw_api.abstract.manager.class: Clarity\WebMoneyBundle\Manager\AbstractManager
+    clarity_wm.abstract.manager.class: Clarity\WebMoneyBundle\Manager\AbstractManager
 
 
 services:
 ## Managers configuration ##
-    zw_api.webmoney.manager:
-        class: "%zw_api.webmoney.manager.class%"
+    clarity_wm.webmoney.manager:
+        class: "%clarity_wm.webmoney.manager.class%"
         arguments:
-            - "@zw_api.webmoney.client"
-            - "%zw_api.webmoney.manager.wmid%"
-            - "%zw_api.webmoney.manager.wmr%"
-            - "%zw_api.webmoney.manager.signer_path%"
+            - "@clarity_wm.webmoney.client"
+            - "%clarity_wm.webmoney.manager.wmid%"
+            - "%clarity_wm.webmoney.manager.wmr%"
+            - "%clarity_wm.webmoney.manager.signer_path%"
         lazy: true
         public: true
 
 ## Clients configurations ##
-    zw_api.webmoney.client:
-        class: "%zw_api.webmoney.client.class%"
-        arguments: ["%zw_api.webmoney.client.url%", "%zw_api.webmoney.client.config%"]
+    clarity_wm.webmoney.client:
+        class: "%clarity_wm.webmoney.client.class%"
+        arguments: ["%clarity_wm.webmoney.client.url%", "%clarity_wm.webmoney.client.config%"]
         calls:
-            - ["setDescription", ["@zw_api.webmoney.client.service_description"]]
+            - ["setDescription", ["@clarity_wm.webmoney.client.service_description"]]
         tags:
             - {name: guzzle.client}
 
 ## Client description services ##
-    zw_api.webmoney.client.service_description:
+    clarity_wm.webmoney.client.service_description:
         class: "%guzzle.service_description.class%"
         factory_class: "%guzzle.service_description.class%"
         factory_method: factory
-        arguments: ["%zw_api.webmoney.client.service_description.file_path%"]
+        arguments: ["%clarity_wm.webmoney.client.service_description.file_path%"]

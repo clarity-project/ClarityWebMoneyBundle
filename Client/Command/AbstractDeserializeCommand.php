@@ -1,6 +1,6 @@
 <?php
 
-namespace ZW\ApiBundle\Client\Command;
+namespace Clarity\WebMoneyBundle\Client\Command;
 
 use Guzzle\Service\Command\OperationCommand;
 use Misd\GuzzleBundle\Service\Command\JMSSerializerAwareCommandInterface;
