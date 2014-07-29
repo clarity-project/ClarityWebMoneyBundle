@@ -16,7 +16,7 @@
         "symfony/symfony": "2.3",
         "guzzle/guzzle": "3.8.*@dev",
         "misd/guzzle-bundle": "~1.0",
-        "jms/serializer-bundle": "0.13.*",
+        "jms/serializer-bundle": "0.13.*"
     },
 
     "require-dev": {
