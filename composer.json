@@ -13,7 +13,7 @@
         "php": ">=5.3.3",
         "symfony/framework-bundle": "~2.2",
         "symfony/symfony": "~2.3",
-        "guzzle/guzzle": "~3.8.*@dev",
+        "guzzle/guzzle": "~3.8",
         "misd/guzzle-bundle": "~1.0",
         "jms/serializer-bundle": "0.13.*"
     },
