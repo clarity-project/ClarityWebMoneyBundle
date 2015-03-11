@@ -1,7 +1,7 @@
 parameters:
     clarity_wm.webmoney.manager.class: Clarity\WebMoneyBundle\Manager\WebMoney
-    clarity_wm.webmoney.manager.wmid: 1085xxxxxxxx # to bundle config
-    clarity_wm.webmoney.manager.wmr: R2375xxxxxxxx # to bundle config
+    clarity_wm.webmoney.manager.wmid: %clarity_wm.wmid%
+    clarity_wm.webmoney.manager.wmr: %clarity_wm.wmr%
     clarity_wm.webmoney.manager.signer_path: '%kernel.root_dir%/wmsigner/'
     clarity_wm.webmoney.client.class: Clarity\WebMoneyBundle\Client\WebMoneyClient
     clarity_wm.webmoney.client.url: https://w3s.webmoney.ru/asp/
